@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-bounce-down: bounce-down 1.5s infinite;
+  @keyframes bounce-down {
+    0%, 100% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(10px); /* or 15px for bigger bounce */
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+@layer components {
+  /*global font family*/
+  .glb-font {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
+}
+
+@layer utilities{
+  .navbar-text-style{
+    @apply text-center text-white text-2xl;
+    text-shadow: 2px 2px 20px rgb(0, 0, 0);
+    font-weight: 300;
+  }
+}
