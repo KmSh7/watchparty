@@ -6,7 +6,7 @@ export default function Page() {
     <section
       className="
     w-full
-    min-h-[100dvh]
+    min-h-dvh
     bg-[rgb(52,51,51)]
     relative
     flex flex-col justify-start items-center

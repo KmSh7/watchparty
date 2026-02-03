@@ -57,22 +57,22 @@ export default function Chatbox({
     <article
       ref={chatboxRef}
       style={{
-        height: `${currVh < 500 ? 15 : 60}dvh`,
+        height: `${currVh < 500 ? 15 : 51}dvh`,
       }}
       className="
-      shadow-[2px_2px_12px_rgb(0,0,0)]
+      shadow-[-2px_4px_12px_rgb(0,0,0)]
       w-[96%]
       rounded
       m-2
       flex flex-col items-center
-      shrink
-      max-h-[60vh]
+      sticky
+      top-[55vw]
       "
     >
       <section
         className="
         grow
-        bg-[rgb(46,46,46)]
+        bg-[rgb(30,30,30)]
         w-full
         overflow-y-auto
         flex flex-col  items-left

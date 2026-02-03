@@ -107,8 +107,22 @@ export default function Theatre() {
     </section>
   ) : (
     <ViewPortHeight.Provider value={currVh}>
+      <div className=" flex flex-col relative items-center size-full h-dvh">
+        <div className="
+        w-full
+        sticky
+        top-0
+        ">
       <Screen isFcs={isFocused} />
+      </div>
+      <div className="
+        w-full
+         flex flex-col size-full
+        ">
       <Chatbox username={user} user={api ?? []} setEnableFocus={setIsFocused} />
+      </div>
+      </div>
     </ViewPortHeight.Provider>
+    
   );
 }
