@@ -30,7 +30,10 @@ export default function Chatbox({
     let flag = true;
     const el = document.getElementById("chatbox");
     // el.scrollTo({ top: `${el.scrollHeight}`, behavior: "smooth" });
-     el.scrollTop = el.scrollHeight;
+    if(el)
+    {
+     el.scrollTop = el?.scrollHeight ?? 0;
+    }
     if (newTextArrrived > 1) {
       if (!flag) {
         return;
