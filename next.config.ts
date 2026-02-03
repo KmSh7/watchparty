@@ -1,14 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // output: "export",
+  output: "export",
 
-  // basePath: "/watchparty",
-  // assetPrefix: "/watchparty/",
+  basePath: "/watchparty",
+  assetPrefix: "/watchparty/",
 
-  // images: {
-  //   unoptimized: true,
-  // },
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
