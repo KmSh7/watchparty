@@ -18,18 +18,29 @@ export default function Chatbox({
   const [txtValue, setTxtValue] = useState("");
   const [txtBgColor, setTxtBgColor] = useState("rgb(8, 65, 112)");
   const currVh = useContext(ViewPortHeight);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const chatboxRef = useRef<HTMLDivElement>(null);
   const [kumar, setKumar] = useState<ApiTpye>();
   const [olivia, setOlivia] = useState<ApiTpye>();
   const [showMsg, setShowMsg] = useState("block");
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const [newTextArrrived, setNewTextArrrived] = useState(0);
 
   useEffect(() => {
-  bottomRef.current?.scrollIntoView({
-    behavior: "smooth",
-  });
-}, [txtBgColor]);
+    let flag = true;
+    const el = document.getElementById("chatbox");
+    // el.scrollTo({ top: `${el.scrollHeight}`, behavior: "smooth" });
+     el.scrollTop = el.scrollHeight;
+    if (newTextArrrived > 1) {
+      if (!flag) {
+        return;
+      }
+      setNewTextArrrived(0);
+    }
+    return () => {
+      flag = false;
+    };
+  }, [newTextArrrived]);
 
   useEffect(() => {
     const element = inputRef.current;
@@ -70,6 +81,7 @@ export default function Chatbox({
       "
     >
       <section
+        id="chatbox"
         className="
         grow
         bg-[rgb(30,30,30)]
@@ -98,16 +110,19 @@ export default function Chatbox({
                       m-2 
                       p-1 
                       rounded-lg 
+                      max-w-[80%]
                       ${usr === "KRS" ? "bg-[rgb(19,88,112)]" : "bg-[rgb(124,18,143)]"}
                       ${usr === "KRS" ? "self-start" : "self-end"}
-                      
+                      wrap-break-word
+                      whitesp1ace-pre-wrap
+                      text-[20px]
+                      tracking-wider
                       `}
                   >
                     {txt.slice(3)}
                   </span>
                 );
               })}
-              <div ref={bottomRef} />
             </div>
           );
         })}
@@ -123,11 +138,12 @@ export default function Chatbox({
         bottom-0
         "
       >
-        <input
+        <textarea
+          rows={1}
           ref={inputRef}
           id="textbox"
           className="
-            shadow-[2px_2px_12px_rgb(0,0,0)]
+            shadow-[2px_2px_12px_rgb(255, 255, 255)]
             grow
             outline-none
             p-3
@@ -135,11 +151,15 @@ export default function Chatbox({
             text-xlx
             focus:bg-black
             z-10
+            h-auto
+            wrap-break-word
+            overflow-hidden
             "
           onChange={(e) => {
             setTxtValue(e.target.value);
+            const el = e.currentTarget;
+            el.style.height = `${el.scrollHeight}px`;
           }}
-          type="text"
           value={txtValue}
         />
         <button
@@ -157,13 +177,17 @@ export default function Chatbox({
           onClick={() => {
             if (!(txtValue.trim() == "") && !(txtValue == null)) {
               if (username == "kumar") {
-                setTxtBgColor("rgb(4, 134, 160)");
+                setNewTextArrrived((prev) => prev + 1);
                 pushText([`KRS${txtValue}`]);
               } else {
-                setTxtBgColor("#9e09a5");
+                setNewTextArrrived((prev) => prev + 1);
                 pushText([`OLA${txtValue}`]);
               }
               setTxtValue("");
+              if(inputRef.current)
+              {
+              inputRef.current.style.height = "auto";
+              }
             }
           }}
         >

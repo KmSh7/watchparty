@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ViewPortHeight } from '@/context/chatbox'
+import { useAppSelector } from '@/redux/customHook/useReduxHook';
 
 type ScreeProps = {
     isFcs : boolean
@@ -9,6 +10,13 @@ type ScreeProps = {
 export default function Screen({isFcs} : ScreeProps) {
 
     const currVh = useContext(ViewPortHeight);
+    const movLink = useAppSelector((state) => {
+      console.log(state.linkpath.linkPath);
+      return state.linkpath.linkPath;
+      
+});
+    console.log("mov: ", movLink);
+    
 
 
   return (
@@ -30,7 +38,7 @@ export default function Screen({isFcs} : ScreeProps) {
         size-full
         contain-content
         '
-        src="https://www.youtube.com/embed/9LZP0KvMwts?list=RD9LZP0KvMwts" 
+        src={movLink} 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         frameBorder="0"></iframe>
@@ -38,3 +46,10 @@ export default function Screen({isFcs} : ScreeProps) {
       </article>
   )
 }
+
+
+/*
+<iframe width="1023" height="575" src="https://www.youtube.com/embed/TueS5JuD130?list=RDMMTueS5JuD130" title="Kesha - GLOW. (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="1023" height="575" src="https://www.youtube.com/embed/9LZP0KvMwts?list=RDMMTueS5JuD130" title="GLOW. (Blusher Remix)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+https://drive.google.com/file/d/1N-Ix3Wa_mqvDqz8teKFM0o90gZ9RVhb9/preview
+*/

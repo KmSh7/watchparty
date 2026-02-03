@@ -1,6 +1,9 @@
 import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import Footer from "@/components/footer/Footer";
+import { store } from "@/redux/store";
+import { Provider } from "react-redux";
+import Providers from "@/redux/Provider";
 
 export default function RootLayout({
   children,
@@ -30,6 +33,7 @@ export default function RootLayout({
      container
      "
       >
+        <Providers>
         <header id="headder"
           className="
       w-full
@@ -65,6 +69,7 @@ export default function RootLayout({
         >
           <Footer />
         </footer>
+        </Providers>
       </body>
     </html>
   );
